@@ -131,7 +131,13 @@ static Random random = new Random();
 
     @Override
     int pathCost(String op) {
-        return 0;
+        //kill queen < move <inspire
+        if(op.split(";").length >1)
+            return 1;
+        if(op.startsWith("inspire"))
+            return 3;
+
+        return 2;
     }
 
 

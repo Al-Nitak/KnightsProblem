@@ -2,7 +2,7 @@ public class main {
 
     public static void main(String [] args) {
         KnightsProblem p = new KnightsProblem();
-        p.initialState = p.genBoard(10,10,10,10);
+        p.initialState = p.genBoard(10,10,10,5);
         /*CHOOSE SEARCH METHOD
          * DF:depthFirst    BF:breadthFirst
          * ID:iterativeDepth  UC:uniformCost

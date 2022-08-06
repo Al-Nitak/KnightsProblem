@@ -14,26 +14,19 @@ public class GreedySearch implements Comparator< Node> {
 	public int compare(Node n1, Node n2) {
 
 		if(fun1){
+			KnightsProblemState n1KpState = (KnightsProblemState)n1.myState;
+			KnightsProblemState n2KpState = (KnightsProblemState)n2.myState;
 
-			return ((KnightsProblemState)n1.myState).queens.length - ((KnightsProblemState)n2.myState).queens.length;
+
+			return (
+					(n1KpState.queens.length - n2KpState.queens.length)
+//							+
+//					(n1.depth-n2.depth)
+			);
 		}
 
 			return n1.depth-n2.depth;
 			}
-			
-			
-			
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
+
 
 }
