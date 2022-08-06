@@ -14,6 +14,7 @@ public class GreedySearch implements Comparator< Node> {
 	public int compare(Node n1, Node n2) {
 
 		if(fun1){
+
 			return ((KnightsProblemState)n1.myState).queens.length - ((KnightsProblemState)n2.myState).queens.length;
 		}
 

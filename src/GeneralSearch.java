@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 
 public  class GeneralSearch {
 	Problem p;
 	Queue<Node> que ;
 	String queF="";
-	ArrayList<Integer>  seenStates = new ArrayList<Integer>(); 
+	HashMap<Integer,State> seenStates = new HashMap<>();
 	
 	
 	//static int nEx=0;
@@ -69,7 +67,6 @@ public String solve() {
 				Node t = cN.parent;
 				if(t!=null)
 				solution+= cN.operator+"\n";
-				
 				while(t.parent!=null)
 				{
 				solution+=t.operator+"\n";
@@ -77,22 +74,17 @@ public String solve() {
 				}
 				System.out.println("NUmber of nodes tested : " + i);
 				System.out.println("number of nodes that generated children "+ mE);
-				System.out.println("NUmber of childeren added to q with control  : " + qSize);
-				System.out.println("NUmber of childeren added to q without   control  : " + qSz);
+				System.out.println("NUmber of children added to q with control  : " + qSize);
+				System.out.println("NUmber of children added to q without   control  : " + qSz);
+				System.out.println("generated Twice  : " + (qSz-qSize));
 				return solution;
 				
 			}else{
-				
-			
-//				if(!seenStates.contains(cN.myState.hashCode())) {
-
+				if(!seenStates.containsKey(cN.myState.hashCode())) {
 					genChildren(cN);
 					 mE++;
-					
-					 seenStates.add(cN.myState.hashCode());
-//				}
-				
-			
+					 seenStates.put(cN.myState.hashCode(),cN.myState);
+				}
 			}
 			
 			i++;	
@@ -113,21 +105,17 @@ private void genChildren(Node N) {
 		int cost = N.pathCost + p.pathCost(op);
 		Node child = new Node(p.stateSpace.get(op),N,op,N.depth+1,cost);
 		if(queF.equals("ID")) {
-			if(!seenStates.contains(child.myState.hashCode()))
-			if(child.depth<aDepth)	
+			if(!seenStates.containsKey(child.myState.hashCode()))
+				if(child.depth<aDepth)
 		que.add(child);
 			
 		}else {
 			//cycle control
 	
-//			if(!seenStates.contains(child.myState.hashCode())) {
+			if(!seenStates.containsKey(child.myState.hashCode())) {
 			que.add(child);
 			qSize++;
-//			}else{
-//				System.out.println("seen state");
-//				System.out.println(child.myState.hashCode());
-//				System.out.println(child.myState);
-//			}
+			}
 			qSz++;
 			
 		}

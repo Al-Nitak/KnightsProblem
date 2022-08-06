@@ -47,4 +47,29 @@ public String toString(){
         // goal state
         return this.queens.length;
     }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result * Arrays.deepHashCode(state) * Arrays.deepHashCode(knights) *Arrays.deepHashCode(queens)  ;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        KnightsProblemState other = (KnightsProblemState) obj;
+        if (!Arrays.deepEquals(state, other.state ))
+            return false;
+        if (!Arrays.deepEquals(knights, other.knights ))
+            return false;
+        if (!Arrays.deepEquals(queens, other.queens ))
+            return false;
+        return true;
+    }
 }

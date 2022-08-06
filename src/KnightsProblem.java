@@ -64,7 +64,7 @@ static Random random = new Random();
 
     private HashMap<String,State> allPossibleStates(Knight knight,KnightsProblemState currentState){
         byte[][] possibleMovements = new byte [][]{
-                {1,3},{-1,3},{1,-3},{-1,-3},{3,1},{-3,1},{3,-1},{-3,-1}
+                {1,2},{-1,2},{1,-2},{-1,-2},{2,1},{-2,1},{2,-1},{-2,-1}
         };
 
         HashMap<String,State> possibleStates = new HashMap<>();
